@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WishItem } from 'src/shared/models/WishItem';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wishlist';
+
+  constructor()
+  {
+   
+  }
 }
