@@ -11,7 +11,7 @@
     </form>
     <div class="row mt-5">
         <div class="col-sm-4">
-            <select name="wishFilterSelect" [(ngModel)]="wishFilter" (ngModelChange)="filterChanged($event)" id="" class="form-select">
+            <select name="wishFilterSelect" [(ngModel)]="wishFilter" id="" class="form-select">
                 <option value="0">All</option>
                 <option value="1">Fulfilled</option>
                 <option value="2">Unfulfilled</option>
@@ -20,18 +20,26 @@
     </div>
     <div class="row mt-3">
         <div class="col p-2">
-            <div *ngIf="visibleItems.length === 0; else showItems"><p class="text-bold">There are no wishes listed.</p></div>
-            <ng-template #showItems>
-                <ul class="list-group">
-                    <li *ngFor="let i of visibleItems; index as $index" [attr.data-index]="$index" class="list-group-item" [ngClass]="i.isComplete() ? ['text-primary', 'bg-light'] : ''">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="checkbox" [checked]="i.isComplete()" (click)="toggleItem(i)"> {{i.Text}}
-                            </label>
-                        </div>
-                    </li>
-                </ul>
-            </ng-template>
+            @if(visibleItems.length > 0){
+                <div *ngIf="visibleItems.length === 0; else showItems"></div>
+                
+                <ng-template #showItems>
+                    <ul class="list-group">
+                        @for(i of visibleItems; track $index) {
+                            <li [attr.data-index]="$index" class="list-group-item" [ngClass]="i.isComplete() ? ['text-primary', 'bg-light'] : ''">
+                                
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="checkbox" [checked]="i.isComplete()" (click)="toggleItem(i)"> {{i.Text}}
+                                    </label>
+                                </div>
+                            </li>
+                        } 
+                    </ul>
+                </ng-template>
+            } @else {
+                <p class="text-bold">There are no wishes listed.</p>
+            }
         </div>
     </div>
 </div>
