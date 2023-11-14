@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, enableProdMode } from '@angular/core';
 import { WishItem } from 'src/shared/models/WishItem';
 
 @Component({
@@ -11,6 +11,6 @@ export class AppComponent {
 
   constructor()
   {
-   
+      enableProdMode()
   }
 }

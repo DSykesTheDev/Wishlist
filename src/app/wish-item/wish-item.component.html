@@ -1,0 +1,8 @@
+<li class="list-group-item" [ngClass]="completed ? ['text-primary', 'bg-light'] : ''">
+                
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="checkbox" class="checkbox" [checked]="completed" (click)="toggleCompleted()"> {{wishText}}
+        </label>
+    </div>
+</li>

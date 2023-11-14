@@ -1,0 +1,11 @@
+@if(wishes.length > 0) {
+    <ul class="list-group">
+        @for(i of wishes; track $index) {
+            <wish-list-item
+                [wishText]="i.Text"
+                [(completed)]="i.Complete"></wish-list-item>
+        } 
+    </ul>
+} @else {
+    <p class="text-bold">There are no wishes listed.</p>
+}

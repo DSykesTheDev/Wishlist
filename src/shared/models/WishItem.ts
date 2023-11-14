@@ -1,6 +1,6 @@
 export class WishItem {
 
-    constructor(private _text: string, private _complete: boolean = false)
+    constructor(private _text: string, private _complete: boolean = false, private _personal?: boolean, private _public?: boolean)
     {
 
     }
@@ -14,13 +14,10 @@ export class WishItem {
         this._text = value;
     }
 
-    public isComplete() 
+    public get Complete() 
     {
         return this._complete;
     }
 
-    public Complete()
-    {
-        this._complete = !this._complete;
-    }
+    public set Complete(value : boolean) { this._complete = value }
 }

@@ -1,45 +1,14 @@
 <div class="container">
     <h1 class="display-1 my-4 text-center">Wishlist!</h1>
-    <form class=" row  align-items-center justify-content-center">
-        <div class="col-sm-6">
-            <label for="" class="visually-hidden">Wish</label>
-            <input name="newWishText" [(ngModel)]="wishText" type="text" class="form-control">
-        </div>
-        <div class="col-auto">
-            <button (click)="$event.preventDefault(); addWish()" class="btn btn-primary">Add Wish</button>
-        </div>
-    </form>
+    <add-wish-form (addWish)="items.push($event)" ></add-wish-form>
     <div class="row mt-5">
-        <div class="col-sm-4">
-            <select name="wishFilterSelect" [(ngModel)]="wishFilter" id="" class="form-select">
-                <option value="0">All</option>
-                <option value="1">Fulfilled</option>
-                <option value="2">Unfulfilled</option>
-            </select>
+        <div class="col-sm-4">  
+            <wish-filter [(listFilter)]="filter"></wish-filter>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col p-2">
-            @if(visibleItems.length > 0){
-                <div *ngIf="visibleItems.length === 0; else showItems"></div>
-                
-                <ng-template #showItems>
-                    <ul class="list-group">
-                        @for(i of visibleItems; track $index) {
-                            <li [attr.data-index]="$index" class="list-group-item" [ngClass]="i.isComplete() ? ['text-primary', 'bg-light'] : ''">
-                                
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="checkbox" [checked]="i.isComplete()" (click)="toggleItem(i)"> {{i.Text}}
-                                    </label>
-                                </div>
-                            </li>
-                        } 
-                    </ul>
-                </ng-template>
-            } @else {
-                <p class="text-bold">There are no wishes listed.</p>
-            }
+            <wish-list [wishes]="items.filter(filter)"></wish-list>
         </div>
     </div>
 </div>
