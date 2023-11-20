@@ -1,9 +1,7 @@
 @if(wishes.length > 0) {
     <ul class="list-group">
         @for(i of wishes; track $index) {
-            <wish-list-item
-                [wishText]="i.Text"
-                [(completed)]="i.Complete"></wish-list-item>
+            <wish-list-item [wish]="i"></wish-list-item>
         } 
     </ul>
 } @else {

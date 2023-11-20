@@ -17,13 +17,14 @@ export class WishFilterComponent implements OnInit {
 
   @Input() listFilter: any;
   @Output() listFilterChange = new EventEmitter<any>();
-  _filter: any;
+  _filter: any = 0;
+  
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.updateFilter('0');
+    this.updateFilter(this._filter);
   }
 
 
